@@ -100,6 +100,11 @@
             box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);
         }
 
+        .product-card:hover .description {
+            opacity: 1;
+            right: 0;
+        }
+
         .category-button {
             background-color: rgba(255, 0, 0, 0.7);
             color: #ffffff;
@@ -120,30 +125,35 @@
         }
 
         .description {
-            display: none;
             position: absolute;
             top: 0;
-            left: 100%;
-            width: 200px;
+            right: -100%;
+            width: 220px;
+            max-height: 150px; /* Максимальная высота описания */
             background-color: rgba(255, 255, 255, 0.9);
             color: #000;
             padding: 10px;
             border-radius: 5px;
             box-shadow: 0 2px 10px rgba(255, 0, 0, 0.5);
-            transition: opacity 0.3s ease;
+            transition: opacity 0.3s ease, right 0.3s ease;
             opacity: 0;
             z-index: 2;
-        }
-
-        .product-card:hover .description {
-            display: block;
-            opacity: 1;
+            overflow-y: auto; /* Добавляем вертикальную прокрутку */
+            font-family: 'Poppins', sans-serif; /* Добавляем красивый шрифт */
+            border: 1px solid rgba(255, 0, 0, 0.5); /* Добавляем границу для всех описаний */
         }
 
         .product-image {
             width: 100%;
             border-radius: 10px;
             margin-bottom: 10px;
+        }
+
+        .price {
+            font-size: 18px;
+            color: #ff4500;
+            margin: 10px 0;
+            font-family: 'Poppins', sans-serif; /* Красивый шрифт для цен */
         }
 
         footer {
@@ -171,6 +181,28 @@
             margin: 20px 0;
             font-weight: 600;
         }
+
+        /* Адаптивные стили для мобильных устройств */
+        @media (max-width: 768px) {
+            .products {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .description {
+                position: static;
+                width: auto;
+                max-height: 100px; /* Уменьшаем максимальную высоту для мобильных устройств */
+                margin-top: 10px;
+                transition: opacity 0.3s ease, max-height 0.3s ease;
+            }
+
+            .product-card:hover .description {
+                right: auto;
+                opacity: 1;
+                max-height: 150px; /* Увеличиваем высоту при наведении */
+            }
+        }
     </style>
 </head>
 <body>
@@ -190,25 +222,30 @@
             <div class="product-card">
                 <img src="https://cdn.discordapp.com/attachments/1323663834711461898/1323663869276586046/Screenshot_2024-10-24-14-38-13-648_com.discord-edit.jpg?ex=678db94a&is=678c67ca&hm=e39b2d748eeeed0508c1a82d3835984e6792b32c3d9f8f54ff6b38bd57bc5dac" alt="Товар 2" class="product-image">
                 <h2>Протез печени "R"</h2>
-                <a href="https://discord.com/channels/1257381863107067966/1323663834711461898" class="category-button" target="_blank">Купить</a>
+                <p class="price">150.000 $</p>
+                <a href="https://discord.com/users/637718674526175243" class="category-button" target="_blank">Купить</a>
                 <div class="description">
                     <strong>Описание:</strong>
-                    <p>Описание товара 2</p>
+                    <p>Имплант печени созданный из безопасных материалов для человека. Внутри протеза находится механизм который забирает из крови все вещества и перерабатывает их.</p>
                 </div>
             </div>
             <div class="product-card">
                 <img src="https://cdn.discordapp.com/attachments/1330444730579947593/1330455887491629136/image.png?ex=678e0b1a&is=678cb99a&hm=d54b1656272fee0fe1dde61075eccb5ab805c7fd9fcbb172b4aa4a25e0c71458" alt="Glance" class="product-image">
                 <h2>Glance</h2>
-                <a href="https://discord.com/channels/1257381863107067966/1324823130014875688" class="category-button" target="_blank">Купить</a>
+                <p class="price">Недоступно</p>
+                <a href="https://discord.com/users/637718674526175243" class="category-button" target="_blank">Купить</a>
                 <div class="description">
                     <strong>Описание:</strong>
-                    <p>Описание товара 3</p>
+                    <p>- Очки, в статичном положении улучшают обзор в дымовой завесе. Также позволяют уменьшить эффект ослепления;<br>
+                    - Очки, подключены казалось к обычным часам, но на самом деле они служат для включения и выключения очков;<br>
+                    - Эти очки могут помочь против нападения повстанцев хаоса, если они применяют светошумовые гранаты или дым.</p>
                 </div>
             </div>
             <div class="product-card">
                 <img src="https://cdn.discordapp.com/attachments/1314225469419294780/1330456742407962645/image.png?ex=678e0be6&is=678cba66&hm=48354d6044ed70b8b1a43f0170d5b9d85a97d38276c00d6242c119095f84bfa0" alt="Assistant" class="product-image">
                 <h2>Assistant</h2>
-                <a href="https://discord.com/channels/1257381863107067966/1324866606886682738" class="category-button" target="_blank">Купить</a>
+                <p class="price">45 м. $</p>
+                <a href="https://discord.com/users/637718674526175243" class="category-button" target="_blank">Купить</a>
                 <div class="description">
                     <strong>Описание:</strong>
                     <p>Робот "Assistant" был выполнен для помощи людям, ассистирования, экстренной помощи. Имеет ряд медицинских изделий, препаратов, вакцин. Присутствуют датчики, сканеры, экзоскелеты.</p>
@@ -222,28 +259,31 @@
                 <div class="product-card">
                     <img src="https://cdn.discordapp.com/attachments/1330490553414193224/1330490567657787484/image.png?ex=678e2b66&is=678cd9e6&hm=8d4f5e4f6347d1e9883e1e01efd29330c27e607b49776813f815ffe26dced3b3" alt="Протезы типа 'А'" class="product-image">
                     <h2>Протезы типа "А"</h2>
-                    <a href="https://discord.com/channels/1257381863107067966/1323598909301329930" class="category-button" target="_blank">Купить</a>
+                    <p class="price">65.000 $</p>
+                    <a href="https://discord.com/users/637718674526175243" class="category-button" target="_blank">Купить</a>
                     <div class="description">
                         <strong>Описание:</strong>
-                        <p>Описание товара 4</p>
+                        <p>Протезы рук сделанные из карбона, титана и прочих механизмов. Сделаны для гражданского пользования.</p>
                     </div>
                 </div>
                 <div class="product-card">
                     <img src="https://cdn.discordapp.com/attachments/1314225469419294780/1330487063707123762/image.png?ex=678e2823&is=678cd6a3&hm=d6190a010a02322f3772c4f0228b852deea3145d6aa7b81ad7e7401d1286ad36" alt="Друг на любой вкус" class="product-image">
                     <h2>Друг на любой вкус</h2>
-                    <a href="https://discord.com/channels/1257381863107067966/1323602959313145866" class="category-button" target="_blank">Купить</a>
+                    <p class="price">Недоступно</p>
+                    <a href="https://discord.com/users/637718674526175243" class="category-button" target="_blank">Купить</a>
                     <div class="description">
                         <strong>Описание:</strong>
-                        <p>Описание товара 5</p>
+                        <p>Друг на любой вкус Андерсон Роботикс относится к десяти полностью сочлененным гуманоидным игрушечным роботам, произведенным Anderson Robotics. Корпус каждого экземпляра состоит из формованных поликарбонатных корпусов на алюминиевой раме. Внешняя часть этих корпусов покрыта черной тканью идентичного состава УГАСП, в то время как внутренняя часть покрыта тауматургическими символами. В полностью собранном виде каждый экземпляр имеет высоту около 31 см и весит около 3 кг.</p>
                     </div>
                 </div>
                 <div class="product-card">
                     <img src="https://cdn.discordapp.com/attachments/1325531639656480850/1330487567166214247/image.png?ex=678e289b&is=678cd71b&hm=267dc52bbd27b939ddb5475701e00b9b0acc94bb6a0d700ff23896dbd8b43d52" alt="Скелетный Усилитель 'Атлант'" class="product-image">
                     <h2>Скелетный Усилитель "Атлант"</h2>
-                    <a href=" https://discord.com/channels/1257381863107067966/1325130497856110774" class="category-button" target="_blank">Купить</a>
+                    <p class="price">Недоступно</p>
+                    <a href="https://discord.com/users/637718674526175243" class="category-button" target="_blank">Купить</a>
                     <div class="description">
                         <strong>Описание:</strong>
-                        <p>Описание товара 6</p>
+                        <p>Это комплексная система имплантируемых титановых компонентов, разработанная для значительного повышения прочности и устойчивости скелета. Основные компоненты</p>
                     </div>
                 </div>
             </div>
